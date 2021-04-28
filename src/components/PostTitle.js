@@ -44,7 +44,7 @@ export default function PostTitle(props) {
     <div className="py-2 col-start-2 col-span-4 mb-6">
       <p className="text-lg leading-7 text-gray-900 sm:text-lg sm:truncate">
         {
-          props.url ? <a href={props.url}>{props.title}</a> : <Link to={{pathname: `/postdetail/${props._id}`}}>props.title</Link>
+          props.url ? <a href={props.url}>{props.title}</a> : <Link to={{pathname: `/postdetail/${props._id}`}}>{props.title}</Link>
         }
       </p>
       <span className="text-gray-500">
