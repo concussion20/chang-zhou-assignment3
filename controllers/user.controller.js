@@ -62,8 +62,6 @@ router.post('/login', function (req, res) {
     const {username, password} = req.body;
     UserModel.getUserByUserName(username)
         .then((user) => {
-            console.log(user);
-            // console.log(username, password);
             if (user.password !== password) {
                 return res.status(400).send("The password does not match");
             } else {

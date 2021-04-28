@@ -27,13 +27,13 @@ router.post('/', authParser, (req, res) => {
 
 router.put('/', authParser, (req, res) => {
     let post = req.body.post;
-    return PostModel.updatePost(post)
+    return PostModel.updatePost(post, req.username)
         .then((response) => res.status(200).send(response),
             (error) => res.status(500).send(`Error updating post:${error}`));
 });
 
 router.delete('/:postId', authParser, (req, res) => {
-    return PostModel.deleteByPostById(req.params.postId)
+    return PostModel.deleteByPostById(req.params.postId, req.username)
         .then((response) => res.status(200).send(response),
             (error) => {res.status(500).send(`Error deleting post:${error}`)});
 });

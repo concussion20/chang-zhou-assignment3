@@ -26,13 +26,13 @@ router.post('/', authParser, (req, res) => {
 
 router.put('/', authParser, (req, res) => {
     let comment = req.body.comment;
-    return CommentModel.updateComment(comment)
+    return CommentModel.updateComment(comment, req.username)
         .then((response) => res.status(200).send(response),
             (error) => res.status(500).send(`Error updating comment:${error}`))
 });
 
 router.delete('/:commentId', authParser, (req, res) => {
-    return CommentModel.deleteById(req.params.commentId)
+    return CommentModel.deleteById(req.params.commentId, req.username)
         .then((response) => res.status(200).send(response),
             (error) => {res.status(500).send(`Error deleting comment:${error}`)})
 });

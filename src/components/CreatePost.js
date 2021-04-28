@@ -89,6 +89,7 @@ export default function CreatePost() {
           return axios.post(`/post`, {post: newPost})
           .then(
             response => {
+              console.log(response.data);
               setPublishOK('success');
               setNewPostId(response.data._id);
             },

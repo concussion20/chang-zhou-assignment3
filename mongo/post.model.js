@@ -23,9 +23,12 @@ function getAllPosts() {
     return PostModel.find().sort({created_at: -1}).exec();
 }
 
-function updatePost(newPost) {
+function updatePost(newPost, username) {
     return PostModel.findOne({_id: ObjectId(newPost._id)}).exec()
         .then((doc) => {
+            if (doc.username !== username) {
+                throw new Error("Can't update another person's post!");
+            }
             doc.title = newPost.title;
             doc.url = newPost.url;
             doc.content = newPost.content;
@@ -34,10 +37,16 @@ function updatePost(newPost) {
         // (error) => console.log(`Error updating post:${error}`)
 }
 
-function deleteByPostById(postId) {
-    return CommentModel.deleteByPostId(postId)
-        .then((response) => PostModel.deleteOne({_id: ObjectId(postId)}),
-        (error) => res.status(500).send(`Error adding post:${error}`));
+function deleteByPostById(postId, username) {
+    return PostModel.findOne({_id: ObjectId(postId)}).exec()
+        .then((doc) => {
+            if (doc.username !== username) {
+                throw new Error("Can't delete another person's post!");
+            }
+            return CommentModel.deleteByPostId(postId)
+                .then((response) => PostModel.deleteOne({_id: ObjectId(postId)}),
+                (error) => res.status(500).send(`Error adding post:${error}`));
+        });
 }
 
 // Make sure to export a function after you create it!

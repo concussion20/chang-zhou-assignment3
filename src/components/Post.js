@@ -67,6 +67,7 @@ export default function Post() {
       return axios.post(`/comment`, {comment: newComment})
         .then(
           response => {
+            console.log(response.data);
             setPublishOK('success');
           },
           error => {
@@ -136,7 +137,6 @@ export default function Post() {
       handle_delete_comment_func={handleDeleteComment} handle_update_comment_func={handleUpdateComment} />
   ));
 
-  console.log('in post.js', post);
   if (!post) {
     return (<Redirect to='/' />);
   } 

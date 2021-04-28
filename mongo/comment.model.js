@@ -17,16 +17,25 @@ function getCommentsByPostId(postId) {
     return CommentModel.find({post_id: ObjectId(postId)}).sort({created_at: -1}).exec();
 }
 
-function updateComment(newComment) {
+function updateComment(newComment, username) {
     return CommentModel.findOne({_id: ObjectId(newComment._id)}).exec()
         .then((doc) => {
+            if (doc.username !== username) {
+                throw new Error("Can't update another person's comment!");
+            }
             doc.content = newComment.content;
             return doc.save();
         });
 }
 
-function deleteById(commentId) {
-    return CommentModel.deleteOne({_id: ObjectId(commentId)});
+function deleteById(commentId, username) {
+    return CommentModel.findOne({_id: ObjectId(commentId)}).exec()
+        .then((doc) => {
+            if (doc.username !== username) {
+                throw new Error("Can't delete another person's comment!");
+            }
+            return CommentModel.deleteOne({_id: ObjectId(commentId)});
+        });
 }
 
 function deleteByPostId(postId) {

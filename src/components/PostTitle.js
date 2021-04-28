@@ -40,6 +40,9 @@ export default function PostTitle(props) {
     return (<Redirect to="/" />)
   } 
 
+  console.log(props.content);
+  console.log(typeof props.content);
+
   return (
     <div className="py-2 col-start-2 col-span-4 mb-6">
       <p className="text-lg leading-7 text-gray-900 sm:text-lg sm:truncate">
