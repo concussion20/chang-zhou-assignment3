@@ -35,8 +35,9 @@ function updatePost(newPost) {
 }
 
 function deleteByPostById(postId) {
-    CommentModel.deleteByPostId(postId);
-    return PostModel.deleteOne({_id: ObjectId(postId)});
+    return CommentModel.deleteByPostId(postId)
+        .then((response) => PostModel.deleteOne({_id: ObjectId(postId)}),
+        (error) => res.status(500).send(`Error adding post:${error}`));
 }
 
 // Make sure to export a function after you create it!
