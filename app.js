@@ -70,6 +70,6 @@ db.on('error', console.error.bind(console, 'Error connecting to MongoDB:'));
 
 
 // start server
-// const port = process.env.PORT || 8000;
-const port = 8000;
+const port = process.env.PORT || 8000;
+// const port = 8000;
 app.listen(port);
