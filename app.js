@@ -26,7 +26,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'https://chang-zhou-webdevspr2021-a3.herokuapp.com/'}));
 
 // use routers
 app.use('/user', userRouter);
@@ -70,5 +70,6 @@ db.on('error', console.error.bind(console, 'Error connecting to MongoDB:'));
 
 
 // start server
-const port = process.env.PORT || 8000;
+// const port = process.env.PORT || 8000;
+const port = 8000;
 app.listen(port);

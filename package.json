@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "concurrently \"nodemon ./app.js\" \"craco start\"",
-    "start": "concurrently \"nodemon ./app.js\" \"craco start\"",
-    "build": "craco build"
+    "start": "concurrently \"nodemon --max_old_space_size=250 ./app.js\" \"nodemon --max_old_space_size=250 ./server.js\"",
+    "build": "craco --max_old_space_size=460 build"
   },
   "dependencies": {
     "@craco/craco": "^6.1.1",
