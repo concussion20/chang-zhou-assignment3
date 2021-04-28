@@ -136,9 +136,10 @@ export default function Post() {
       handle_delete_comment_func={handleDeleteComment} handle_update_comment_func={handleUpdateComment} />
   ));
 
-  // if (publishOK === 'success') {
-  //   return (<Redirect to={{pathname: `/post/${postId}`}} />);
-  // } 
+  console.log('in post.js', post);
+  if (!post) {
+    return (<Redirect to='/' />);
+  } 
 
   return (
     <div className="col-start-2 col-span-4">
