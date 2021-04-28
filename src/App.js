@@ -89,7 +89,7 @@ function App() {
           </Route>
           <Route path="/settings" component={Loggedin(<Settings />)}>
           </Route>
-          <Route path="/post/:postId">
+          <Route path="/postdetail/:postId">
             <Post />
           </Route>
           <Route path="/createpost" component={Loggedin(<CreatePost />)}>

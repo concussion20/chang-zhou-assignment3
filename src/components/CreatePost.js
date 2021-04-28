@@ -104,7 +104,7 @@ export default function CreatePost() {
     }
 
     if (publishOK === 'success' && newPostId !== undefined) {
-      return (<Redirect to={{pathname: `/post/${newPostId}`}} />);
+      return (<Redirect to={{pathname: `/postdetail/${newPostId}`}} />);
     } 
     return (
       <div className="col-start-2 col-span-4">

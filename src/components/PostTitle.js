@@ -51,7 +51,7 @@ export default function PostTitle(props) {
         &nbsp;&nbsp; by {props.username} | {props.created_at}
          {/* {props.numComments}  */}
         {
-          !props.hide_view_comment_btn && <Link to={{pathname: `/post/${props._id}`}} > | view comments </Link>
+          !props.hide_view_comment_btn && <Link to={{pathname: `/postdetail/${props._id}`}} > | view comments </Link>
         }
       </span>
       <br />
