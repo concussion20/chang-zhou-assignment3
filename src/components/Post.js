@@ -13,6 +13,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 import PostTitle from './PostTitle';
 import Comment from './Comment';
+import {redirect, getLoggedinUsername} from './Loggedin';
 
 export default function Post() {
   const { postId } = useParams();
@@ -21,8 +22,9 @@ export default function Post() {
   const [formError, setFormError] = useState(false);
   const [publishOK, setPublishOK] = useState("req not send");
 
-  const cookies = new Cookies();
-  let username = cookies.get('username');
+  // const cookies = new Cookies();
+  // let username = cookies.get('username');
+  let username = getLoggedinUsername();
 
   let commentRef;
   let commentElements;
