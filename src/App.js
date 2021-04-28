@@ -18,7 +18,7 @@ import Home from './components/Home';
 import Loggedin from './components/Loggedin';
 import Settings from './components/Settings';
 
-axios.defaults.baseURL = 'http://localhost:8000';
+// axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true
 
 
