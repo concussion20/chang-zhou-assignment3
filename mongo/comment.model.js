@@ -29,11 +29,16 @@ function deleteById(commentId) {
     return CommentModel.deleteOne({_id: ObjectId(commentId)});
 }
 
+function deleteByPostId(postId) {
+    return CommentModel.deleteMany({post_id: ObjectId(postId)});
+}
+
 // Make sure to export a function after you create it!
 module.exports = {
     addComment,
     getCommentById,
     getCommentsByPostId,
     updateComment,
-    deleteById
+    deleteById,
+    deleteByPostId
 };

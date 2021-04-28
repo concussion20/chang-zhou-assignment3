@@ -4,6 +4,8 @@ const PostSchema = require('./post.schema');
 
 const ObjectId = mongoose.Types.ObjectId;
 const PostModel = mongoose.model("Post", PostSchema);
+const CommentModel = require('./comment.model');
+
 
 function addPost(post) {
     return PostModel.create(post);
@@ -33,6 +35,7 @@ function updatePost(newPost) {
 }
 
 function deleteByPostById(postId) {
+    CommentModel.deleteByPostId(postId);
     return PostModel.deleteOne({_id: ObjectId(postId)});
 }
 
