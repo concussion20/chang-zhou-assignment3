@@ -101,7 +101,7 @@ router.post('/signup', function (req, res) {
             const token = jwt.sign(payload, process.env.SUPER_SECRET, {
                 expiresIn: '14d' // optional cookie expiration date
             });
-            return res.cookie('token', token, {httpOnly: true})
+            return res.cookie('token', token, {httpOnly: true, sameSite: true})
                 .status(200).send({username});
         },
         error => res.status(500).send(error));

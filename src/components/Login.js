@@ -32,7 +32,7 @@ export function Login() {
         .then(
           response => {
             console.log(response.data);
-            cookies.set('username', response.data.username, { path: '/', sameSite: true });
+            cookies.set('username', response.data.username, { path: '/', sameSite: true, maxAge: 2592000 });
             setLoginOK('success');
           },
           error => {

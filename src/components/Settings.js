@@ -15,7 +15,7 @@ export default function Settings() {
         return axios.post(`/user/logout`)
             .then(
                 response => {
-                    cookies.remove('username');
+                    cookies.remove('username', { path: '/', sameSite: true, maxAge: 2592000 });
                     setIsLoggedout('success');
                 },
                 error => {
