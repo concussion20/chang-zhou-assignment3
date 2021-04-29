@@ -16,7 +16,8 @@ function getPostsByUserName(username) {
 }
 
 function getPostByPostId(postId) {
-    return PostModel.findOne({_id: ObjectId(postId)}).exec();
+    return PostModel.findOne({_id: ObjectId(postId)}).exec()
+        .catch((error) => {throw error;});
 }
 
 function getAllPosts() {
