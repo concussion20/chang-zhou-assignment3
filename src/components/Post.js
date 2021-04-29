@@ -19,6 +19,7 @@ export default function Post() {
   const { postId } = useParams();
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [loadError, setLoadError] = useState(false);
   const [formError, setFormError] = useState(false);
   const [publishOK, setPublishOK] = useState("req not send");
 
@@ -30,13 +31,18 @@ export default function Post() {
   let commentElements;
 
   useEffect(() => {
+    setLoadError(false);
+
     // load post
     axios.get(`/post/${postId}`)
       .then(response => {
         console.log(response.data);
         setPost(response.data);
       },
-      error => console.log('An error occurred.', error));
+      error => {
+        console.log('An error occurred.', error);
+        setLoadError(true);
+      });
     
     // load comments
     axios.get(`/comment/postid/${postId}`)
@@ -44,7 +50,10 @@ export default function Post() {
         console.log(response.data);
         setComments(response.data);
       },
-      error => console.log('An error occurred.', error));
+      error => {
+        console.log('An error occurred.', error);
+        setLoadError(true);
+      });
   }, [publishOK]);
 
   function validateNewComment() {
@@ -137,7 +146,7 @@ export default function Post() {
       handle_delete_comment_func={handleDeleteComment} handle_update_comment_func={handleUpdateComment} />
   ));
 
-  if (!post) {
+  if (loadError || !post) {
     return (<Redirect to='/' />);
   } 
 
