@@ -38,7 +38,7 @@ export default function CreatePost() {
     }, []);
 
     function validateUrlContent() {
-      if (urlRef.value.length > 0 && detailsRef.value.length > 0) {
+      if ((urlRef.value.length > 0 && detailsRef.value.length > 0) || (urlRef.value.length === 0 && detailsRef.value.length === 0)) {
         setFormError(true)
         return false;
       } else {
